@@ -46,8 +46,6 @@ const Login = () => {
     setLoading(true);
 
     form.current.validateAll();
-
-    // eslint-disable-next-line no-underscore-dangle
     if (checkBtn.current.context._errors.length === 0) {
       dispatch(login(email, password))
         .then(() => {
@@ -62,7 +60,7 @@ const Login = () => {
   };
 
   if (isLoggedIn) {
-    return <Redirect to="/events" />;
+    return <Redirect to="/profile" />;
   }
 
   return (
