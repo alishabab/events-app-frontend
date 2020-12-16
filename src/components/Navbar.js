@@ -43,6 +43,21 @@ const Navbar = () => {
               </span>
             </NavLink>
           </li>
+          <li className="nav-item active">
+            <NavLink exact to="/events" className="nav-link">
+              Events
+            </NavLink>
+          </li>
+          { currentUser.user.role === 'creator' && <li className="nav-item active">
+            <NavLink exact to="/add-events" className="nav-link">
+              Add Events
+            </NavLink>
+          </li> }
+          { currentUser.user.role === 'creator' && <li className="nav-item active">
+            <NavLink exact to="/created-events" className="nav-link">
+              Created Events
+            </NavLink>
+          </li> }
           <li className="nav-item">
             <a className="nav-link" href="/login" onClick={logOut}>Logout</a>
           </li>
