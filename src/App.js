@@ -6,6 +6,7 @@ import Signup from './components/Signup';
 import Profile from './components/Profile';
 import Events from './components/Events';
 import CreatedEvents from './components/CreatedEvents';
+import JoinedEvents from './components/JoinedEvents';
 import AddEvent from './components/AddEvent';
 import './App.css';
 
@@ -20,6 +21,7 @@ function App() {
         <Route exact path='/events' component={Events} />
         <Route exact path='/add-events' component={AddEvent} />
         <Route exact path='/created-events' component={CreatedEvents} />
+        <Route exact path='/joined-events' component={JoinedEvents} />
       </Switch> 
     </div>
   );

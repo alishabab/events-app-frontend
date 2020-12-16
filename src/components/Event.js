@@ -10,10 +10,12 @@ const Event = ({ event }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    setLoading(true);
     UserService.getEventAttendees(event.id)
     .then(res => {
       const attendeeIds = res.data.map(attendee => attendee.id);
       console.log("from useEffect")
+      setLoading(false);
       setJoined(attendeeIds.includes(currentUser.user.id));
     })
   },[])
@@ -69,7 +71,7 @@ const Event = ({ event }) => {
           Delete
         </button> : null
       }
-      <button type="button" onClick={() => handleInvite(event.id, currentUser.user.id)}>
+      <button type="button" onClick={() => handleInvite(event.id, currentUser.user.id)} disabled={loading}>
           {joined ? 'Leave' : 'Join'}
       </button>
     </div>

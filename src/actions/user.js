@@ -3,6 +3,8 @@ import {
   EVENTS_FAIL, 
   CREATED_EVENTS_SUCCESS,
   CREATED_EVENTS_FAIL,
+  ATTENDED_EVENTS_SUCCESS,
+  ATTENDED_EVENTS_FAIL,
   ADD_EVENTS_SUCCESS, 
   ADD_EVENTS_FAIL,
   DELETE_EVENT_SUCCESS,
@@ -25,6 +27,15 @@ export const getCreatedEvents = userId => dispatch => UserService.getCreatedEven
   return Promise.resolve();
 }, err => {
   dispatch({type: CREATED_EVENTS_FAIL, payload: err.message})
+  return Promise.reject();
+})
+
+export const getAttendedEvents = userId => dispatch => UserService.getAttendedEvents(userId).then(response => {
+  console.log(response)
+  dispatch({type: ATTENDED_EVENTS_SUCCESS, payload: response.data})
+  return Promise.resolve();
+}, err => {
+  dispatch({type: ATTENDED_EVENTS_FAIL, payload: err.message})
   return Promise.reject();
 })
 

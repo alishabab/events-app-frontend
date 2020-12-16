@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 import Event from './Event';
 import { getCreatedEvents } from '../actions/user';
 
-const Events = () => {
+const CreatedEvents = () => {
   const { user: currentUser } = useSelector(state => state.auth);
   const { createdEvents } = useSelector(state => state.user);
   const { message } = useSelector(state => state.user);
@@ -33,4 +33,4 @@ const Events = () => {
   )
 }
 
-export default Events;
+export default CreatedEvents;

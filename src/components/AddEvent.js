@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { postEvent } from '../actions/user';
 const AddEvent = () => {
+  const { user: currentUser } = useSelector(state => state.auth);
   const { message } = useSelector(state => state.message);
   const dispatch = useDispatch();
   const [name, setName] = useState('');
@@ -9,6 +11,9 @@ const AddEvent = () => {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [loading, setLoading] = useState(false);
+  if (!currentUser) {
+    return <Redirect to="/login" />;
+  }
   const handleNameChange = e => {
     setName(e.target.value)
   }

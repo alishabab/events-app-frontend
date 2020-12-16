@@ -58,6 +58,11 @@ const Navbar = () => {
               Created Events
             </NavLink>
           </li> }
+          <li className="nav-item active">
+            <NavLink exact to="/joined-events" className="nav-link">
+              Joined Events
+            </NavLink>
+          </li>
           <li className="nav-item">
             <a className="nav-link" href="/login" onClick={logOut}>Logout</a>
           </li>
