@@ -10,7 +10,6 @@ const CreatedEvents = () => {
   const { message } = useSelector(state => state.user);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
-  console.log(createdEvents);
   useEffect(() => {
     setLoading(true);
     dispatch(getCreatedEvents(currentUser.user.id))

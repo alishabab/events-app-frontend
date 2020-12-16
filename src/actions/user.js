@@ -1,6 +1,8 @@
 import {  
   EVENTS_SUCCESS, 
   EVENTS_FAIL, 
+  ATTENDEES_SUCCESS,
+  ATTENDEES_FAIL,
   CREATED_EVENTS_SUCCESS,
   CREATED_EVENTS_FAIL,
   ATTENDED_EVENTS_SUCCESS,
@@ -13,7 +15,6 @@ import {
 import UserService from '../service/user.service';
 
 export const getAllEvents = () => dispatch => UserService.getAllEvents().then(response => {
-  console.log(response)
   dispatch({type: EVENTS_SUCCESS, payload: response.data})
   return Promise.resolve();
 }, err => {
@@ -21,8 +22,15 @@ export const getAllEvents = () => dispatch => UserService.getAllEvents().then(re
   return Promise.reject();
 })
 
+export const getAllAttendees = () => dispatch => UserService.getAllAttendees().then(response => {
+  dispatch({type: ATTENDEES_SUCCESS, payload: response.data})
+  return Promise.resolve();
+}, err => {
+  dispatch({type: ATTENDEES_FAIL, payload: err.message})
+  return Promise.reject();
+})
+
 export const getCreatedEvents = userId => dispatch => UserService.getCreatedEvents(userId).then(response => {
-  console.log(response)
   dispatch({type: CREATED_EVENTS_SUCCESS, payload: response.data})
   return Promise.resolve();
 }, err => {
@@ -31,7 +39,6 @@ export const getCreatedEvents = userId => dispatch => UserService.getCreatedEven
 })
 
 export const getAttendedEvents = userId => dispatch => UserService.getAttendedEvents(userId).then(response => {
-  console.log(response)
   dispatch({type: ATTENDED_EVENTS_SUCCESS, payload: response.data})
   return Promise.resolve();
 }, err => {
@@ -45,7 +52,7 @@ export const postEvent = event => dispatch => UserService.postEvent(event).then(
     type: SET_MESSAGE,
     payload: 'Event Added',
   });
-  return Promise.resolve();
+  return response.data.id;
 }, err => {
   dispatch({type: ADD_EVENTS_FAIL, payload: err.message})
   return Promise.reject();

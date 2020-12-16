@@ -9,7 +9,6 @@ const Events = () => {
   const { events } = useSelector(state => state.user);
   const { message } = useSelector(state => state.user);
   const [loading, setLoading] = useState(false);
-  console.log(events);
   const dispatch = useDispatch();
   useEffect(() => {
     setLoading(true);

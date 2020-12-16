@@ -10,7 +10,6 @@ const JoinedEvents = () => {
   const { message } = useSelector(state => state.user);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
-  console.log(attendedEvents);
   useEffect(() => {
     setLoading(true);
     dispatch(getAttendedEvents(currentUser.user.id))

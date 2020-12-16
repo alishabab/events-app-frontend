@@ -1,6 +1,8 @@
 import { 
   EVENTS_SUCCESS, 
   EVENTS_FAIL, 
+  ATTENDEES_SUCCESS,
+  ATTENDEES_FAIL,
   CREATED_EVENTS_SUCCESS,
   CREATED_EVENTS_FAIL,
   ATTENDED_EVENTS_SUCCESS,
@@ -12,6 +14,7 @@ import {
 
 const initialState = {
   events: [],
+  attendees: [],
   createdEvents: [],
   attendedEvents: [],
 }
@@ -25,6 +28,16 @@ const userReducer = (state=initialState, action) => {
         events: payload
       }
     case EVENTS_FAIL: 
+      return {
+        ...state,
+        message: payload,
+      }
+    case ATTENDEES_SUCCESS:
+      return {
+        ...state,
+        attendees: payload
+      }
+    case ATTENDEES_FAIL: 
       return {
         ...state,
         message: payload,

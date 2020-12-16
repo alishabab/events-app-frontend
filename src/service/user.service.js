@@ -7,6 +7,14 @@ const getAllEvents = () => axios.get(`${API_URL}/events`, {
   headers: authHeader(),
 })
 
+const getEvent = eventId => axios.get(`${API_URL}/events/${eventId}`, {
+  headers: authHeader(),
+})
+
+const getAllAttendees = () => axios.get(`${API_URL}/users/attendees`, {
+  headers: authHeader(),
+})
+
 const getCreatedEvents = userId => axios.get(`${API_URL}/users/${userId}/created_events`, {
   headers: authHeader(),
 })
@@ -42,6 +50,8 @@ const deleteInvitation = (eventId, attendeeId) => axios.delete(`${API_URL}/event
 
 export default {
   getAllEvents,
+  getEvent,
+  getAllAttendees,
   getCreatedEvents,
   getAttendedEvents,
   postEvent,

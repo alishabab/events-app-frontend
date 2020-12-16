@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import UserService from '../service/user.service';
 import { delteEvent } from '../actions/user';
 const Event = ({ event }) => {
@@ -14,7 +15,6 @@ const Event = ({ event }) => {
     UserService.getEventAttendees(event.id)
     .then(res => {
       const attendeeIds = res.data.map(attendee => attendee.id);
-      console.log("from useEffect")
       setLoading(false);
       setJoined(attendeeIds.includes(currentUser.user.id));
     })
@@ -66,6 +66,8 @@ const Event = ({ event }) => {
       <h5 className="card-title">{event.name}</h5>
       <h6 className="card-subtitle mb-2 text-muted">{event.start_date}</h6>
       <p className="card-text">{event.description}</p>
+      <p><Link to={`/events/${event.id}`}>View Details</Link></p>
+
       { currentUser.user.id === event.creator_id ? 
         <button type="button" onClick={() => deleteHandler(event.id)}>
           Delete

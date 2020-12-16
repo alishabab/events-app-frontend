@@ -23,7 +23,6 @@ export const register = (name, role, email, password) => dispatch => AuthService
     return Promise.resolve();
   },
   error => {
-    console.log(error.response);
     const message = (error.response
           && error.response.data
           && error.response.data.message)
